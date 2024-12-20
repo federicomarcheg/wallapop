@@ -40,3 +40,24 @@ import ProductManagementPage from './pages/ProductManagementPage';
 <Routes>
   <Route path="/manage-products" element={<ProductManagementPage />} />
 </Routes>;
+
+const express = require('express');
+const mongoose = require('mongoose');
+const productRoutes = require('./routes/productRoutes');
+
+const app = express();
+app.use(express.json());
+
+
+mongoose.connect('mongodb://localhost:8080/wallapop', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+
+app.use('/api', productRoutes);
+
+
+app.listen(5000, () => {
+  console.log('Servidor corriendo en http://localhost:8080');
+});

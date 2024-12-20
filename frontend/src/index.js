@@ -13,7 +13,7 @@ const handleSubmit = async (e) => {
     data.append('price', formData.price);
     data.append('image', formData.image);
 
-    await axios.post('http://localhost:27017/api/products/create', data);
+    await axios.post('http://localhost:8080/api/products/create', data);
 };
 
 return (
@@ -73,7 +73,7 @@ import  { AuthProvider } from './context/AuthContext';
 
 const handleFavorite = async () => {
   const data = { userId: 'USER_ID', productId: 'PRODUCT_ID' };
-  await axios.post('http://localhost:27017/api/favorites', data);
+  await axios.post('http://localhost:8080/api/favorites', data);
   alert('Producto añadido a favoritos');
 };
 
