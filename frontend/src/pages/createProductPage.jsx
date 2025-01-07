@@ -20,7 +20,7 @@ function CreateProductPage() {
         data.append('title', formData.title);
         data.append('price', formData.price);
         data.append('image', formData.image);
-        await axios.post('http://localhost:27017/api/products', data, {
+        await axios.post('http://localhost:8080/api/products', data, {
             headers: {
                 'Content-Type':'multipart/form-data'
             }

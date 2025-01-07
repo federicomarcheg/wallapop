@@ -6,7 +6,7 @@ function FavoritesPage({ userId }) {
 
   useEffect(() => {
     const fetchFavorites = async () => {
-      const res = await axios.get(`http://localhost:27017/api/favorites/${userId}`);
+      const res = await axios.get(`http://localhost:8080/api/favorites/${userId}`);
       setFavorites(res.data);
     };
     fetchFavorites();
@@ -29,7 +29,7 @@ export default FavoritesPage;
 
 const handleRemoveFavorite = async (productId) => {
     try {
-      await axios.delete('http://localhost:27017/api/favorites', {
+      await axios.delete('http://localhost:8080/api/favorites', {
         data: { userId, productId },
       });
       setFavorites(favorites.filter((fav) => fav.productId !== productId));

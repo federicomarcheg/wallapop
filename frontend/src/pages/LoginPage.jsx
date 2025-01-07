@@ -12,7 +12,7 @@ function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:27017/api/users/login', formData);
+        const res = await axios.post('http://localhost:8080/api/users/login', formData);
         login(res.data.token, res.data.user);
     };
 

@@ -7,7 +7,7 @@ function ProductManagementPage() {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await axios.get('http://localhost:27017/api/products');
+      const res = await axios.get('http://localhost:8080/api/products');
       setProducts(res.data);
     };
     fetchProducts();
@@ -15,13 +15,13 @@ function ProductManagementPage() {
 
   const handleCreateProduct = async (e) => {
     e.preventDefault();
-    const res = await axios.post('http://localhost:27017/api/products', newProduct);
+    const res = await axios.post('http://localhost:8080/api/products', newProduct);
     setProducts([...products, res.data]);
     setNewProduct({ title: '', price: '' });
   };
 
   const handleDeleteProduct = async (id) => {
-    await axios.delete(`http://localhost:27017/api/products/${id}`);
+    await axios.delete(`http://localhost:8080/api/products/${id}`);
     setProducts(products.filter((product) => product._id !== id));
   };
 

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config/apiConfig';
+
 
 function CartPage({ userId }) {
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
     const fetchCart = async () => {
-      const res = await axios.get(`http://localhost:27017/api/cart/${userId}`);
+      const res = await axios.get(`http://localhost:8080/api/cart/${userId}`);
       setCart(res.data.products || []);
     };
     fetchCart();
   }, [userId]);
 
   const handleRemove = async (productId) => {
-    await axios.delete('http://localhost:27017/api/cart', {
+    await axios.delete('http://localhost:8080/api/cart', {
       data: { userId, productId },
     });
     setCart(cart.filter((item) => item.productId._id !== productId));
@@ -43,3 +45,9 @@ function CartPage({ userId }) {
 }
 
 export default CartPage;
+
+const fetchCartData = async () => {
+  const response = await fetch(`${API_BASE_URL}/cart`);
+  const data = await response.json();
+  return data;
+}

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
+
+
+
 
 function ChatPage({ productId }) {
   const [messages, setMessages] = useState([]);
@@ -7,7 +11,7 @@ function ChatPage({ productId }) {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const res = await axios.get(`http://localhost:27017/api/messages/${productId}`);
+      const res = await axios.get(`http://localhost:8080/api/messages/${productId}`);
       setMessages(res.data);
     };
     fetchMessages();
@@ -20,7 +24,7 @@ function ChatPage({ productId }) {
       productId,
       message: newMessage,
     };
-    const res = await axios.post('http://localhost:27017/api/messages', messageData);
+    const res = await axios.post('http://localhost:8080/api/messages', messageData);
     setMessages((prev) => [...prev, res.data]);
     setNewMessage('');
   };
@@ -47,4 +51,14 @@ function ChatPage({ productId }) {
   );
 }
 
+const ChatPage = () => {
+  const { t } = useTranslation();
+
+  return <input placeholder={t('chat.placeholder')} />;
+}
+
+
+
 export default ChatPage;
+
+

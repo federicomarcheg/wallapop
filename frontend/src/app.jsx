@@ -6,6 +6,10 @@ import RegisterPage from './pages/RegisterPage';
 import axios from 'axios';
 import React, { useState } from 'react';
 import FavoritesPage  from './pages/FavoritesPage';
+import Header from "./components/Header/Header";
+import AdsPage from "./pages/AdsPage";
+import ProfilePage from "./pages/ProfilePage";
+
 
 
 function app() {
@@ -61,3 +65,29 @@ app.use('/api', productRoutes);
 app.listen(5000, () => {
   console.log('Servidor corriendo en http://localhost:8080');
 });
+
+
+
+
+
+
+const App = () => {
+  return (
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/ads" element={<AdsPage />} />
+        <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
+    </Router>
+  );
+};
+
+import ProfilePage from "./pages/ProfilePage";
+
+<Route path="/profile" element={<ProfilePage />} />
+

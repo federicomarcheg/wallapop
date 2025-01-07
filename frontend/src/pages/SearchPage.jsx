@@ -6,7 +6,7 @@ function Search() {
   const [results, setResults] = useState([]);
 
   const handleSearch = async () => {
-    const res = await axios.get(`http://localhost:5000/api/products/search?q=${query}`);
+    const res = await axios.get(`http://localhost:8080/api/products/search?q=${query}`);
     setResults(res.data);
   };
 

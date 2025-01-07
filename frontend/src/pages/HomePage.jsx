@@ -6,7 +6,7 @@ function HomePage() {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const res = await axios.get('http://localhost:27017/api/products');
+            const res = await axios.get('http://localhost:8080/api/products');
         };
         fetchProducts();
     }, []);
@@ -33,13 +33,50 @@ import { Link } from 'react-router-dom';
 
 const [ query, setQuery ] = useState('');
 const searchProducts = async () => {
-    const res = await axios.get(`http://localhost:27017/api/products/search?query=${query}`);
+    const res = await axios.get(`http://localhost:8080/api/products/search?query=${query}`);
     setProducts(res.data);
 };
 
-const (
+const searchBar = (
     <div>
-        <input value={query} onChange={ (e) => setQuery(e.target.value)} />
+        <input value={query} onChange={(e) => setQuery(e.target.value)} />
         <button onClick={searchProducts}>Buscar</button>
     </div>
 );
+
+import React, { useState, useEffect } from "react";
+import AdList from "../components/AdCard/AdList";
+
+const HomePage = () => {
+  const [ads, setAds] = useState([]);
+
+  useEffect(() => {
+    
+    const fetchAds = async () => {
+      const response = await fetch("/api/ads");
+      const data = await response.json();
+      setAds(data.ads);
+    };
+
+    fetchAds();
+  }, []);
+
+  const handleViewDetails = (id) => {
+    console.log("Ver detalles del anuncio con ID:", id);
+    
+  };
+
+  const handleAddToFavorites = (id) => {
+    console.log("Agregar a favoritos el anuncio con ID:", id);
+    
+  };
+
+  return (
+    <div>
+      <h1>Lista de Anuncios</h1>
+      <AdList ads={ads} onViewDetails={handleViewDetails} onAddToFavorites={handleAddToFavorites} />
+    </div>
+  );
+};
+
+

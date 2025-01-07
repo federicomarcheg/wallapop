@@ -11,7 +11,7 @@ function RegisterPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:27017/api/users/register', formData);
+        await axios.post('http://localhost:8080/api/users/register', formData);
         alert('Usuario registrado con éxito');
     };
 

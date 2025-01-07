@@ -9,7 +9,7 @@ function SearchBar() {
 
 
     const handleSearch = async () => {
-        const res = await axios.get(`http://localhost:27017/api/products/search?q=${query}`);
+        const res = await axios.get(`http://localhost:8080/api/products/search?q=${query}`);
         setResults(res.data);
     };
 
