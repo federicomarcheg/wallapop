@@ -1,0 +1,90 @@
+.profile-page {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-header h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .profile-header p {
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  .profile-details h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #444;
+  }
+  
+  .ad-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .ad-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+  
+  .ad-item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .ad-item p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .ad-item span {
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .profile-actions {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-edit-profile,
+  .btn-logout {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .btn-edit-profile {
+    background-color: #3498db;
+    color: #fff;
+  }
+  
+  .btn-edit-profile:hover {
+    background-color: #2980b9;
+  }
+  
+  .btn-logout {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+  
+  .btn-logout:hover {
+    background-color: #c0392b;
+  }
+  

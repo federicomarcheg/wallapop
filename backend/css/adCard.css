@@ -1,0 +1,61 @@
+.ad-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ad-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .ad-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .ad-card-price {
+    color: #2ecc71;
+    font-size: 1rem;
+    margin: 0;
+  }
+  
+  .ad-card-description {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 12px 0;
+  }
+  
+  .ad-card-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn-details,
+  .btn-favorites {
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-details:hover {
+    background-color: #2980b9;
+  }
+  
+  .btn-favorites {
+    background-color: #e74c3c;
+  }
+  
+  .btn-favorites:hover {
+    background-color: #c0392b;
+  }
+  
