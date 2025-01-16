@@ -1,6 +1,11 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const logger = require('../config/logger');
+
+
+
+
 
 exports.registerUser = async (req, res) => {
     try {
@@ -30,5 +35,17 @@ exports.loginUser = async (req, res) => {
 
     } catch (error) {
         res.status(500).json(error);
+    }
+};
+
+
+exports.createUser = async (req, res) => {
+    try {
+        const user = { id: 1, ...req.body };
+        logger.info(`Usuario creado: ${JSON.stringify(user)}`);
+        res.status(201).send(user);
+    } catch (error) {
+        logger.error(`Error creando usuario: ${error.message}`);
+        res.status(500).send({ error: 'Error interno del servidor' });
     }
 };
