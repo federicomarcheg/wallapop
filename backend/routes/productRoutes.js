@@ -1,6 +1,8 @@
 const upload = require('../config/multer');
 const express = require('express');
 const { createProduct } = require('../controllers/productController');
+const { getProduct } = require('../controllers/productController');
+const { getProductsByCategory } = require('../controllers/productController');
 
 
 
@@ -20,8 +22,9 @@ router.get('/search',async (req, res) => {
 const router = express.Router();
 
 router.post('/create', upload.single('image'), createProduct);
-
-
+router.get('/category/:category', getProductCategory);
+router.get('/location', getProductLocation);
+router.post('/offer', makeOffer);
 module.exports = router;
 
 
@@ -51,5 +54,11 @@ const { getAllProducts, createProduct, deleteProduct } = require('../controllers
 router.get('/', getAllProducts);
 router.post('/', createProduct);
 router.delete('/:id', deleteProduct);
+router.get('/:id', getAllProduct);
 
 module.exports = router;
+
+
+import express from 'express';
+
+export default router;
