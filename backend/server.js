@@ -7,6 +7,8 @@ const passport = require('passport');
 require('.config/passport.js');
 
 
+
+
 const authRoutes = require('./routes/auth');
 
 
@@ -213,3 +215,38 @@ app.use('/api/auth', authRoutes);
 mongoose.connect('mongodb://localhost:8080/wallapop', { useNewUrlParser: true, useUnifiedTopology: true });
 app.listen(8080, () => console.log('Servidor corriendo en http://localhost:8080'));
 
+
+const io = require('socket.io')(8080, {
+  cors: {
+    origin: 'http://localhost:8080',
+  },
+});
+
+io.on('connection', (socket) => {
+  console.log('Usuario conectado');
+
+  socket.on('sendNotification', (notification) => {
+    io.emit('receiveNotification', notification);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Usuario desconectado');
+  });
+});
+
+
+let onlineUsers = {};
+
+io.on('connection', (socket) => {
+  socket.on('userOnline', (userId) => {
+    onlineUsers[userId] = socket.id;
+    io.emit('updateOnlineStatus', onlineUsers);
+  });
+
+
+  socket.on('disconnect', () => {
+    const userId = Object.keys(onlineUsers).find((key) => onlineUsers[key] === socket.id);
+    delete onlineUsers[userId];
+    io.emit('updateOnlineStatus', onlineUsers);
+  });
+});
