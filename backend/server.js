@@ -5,7 +5,8 @@ const dotenv = require('dotenv');
 const session = require('express-session');
 const passport = require('passport');
 require('.config/passport.js');
-
+const cookieParser = require('cookie-parser');
+const csrfProtection = require('./middleware/csrfMiddleware');
 
 
 
@@ -250,3 +251,19 @@ io.on('connection', (socket) => {
     io.emit('updateOnlineStatus', onlineUsers);
   });
 });
+
+app.use(cookieParser());
+
+
+app.use(csrfProtection);
+
+app.get('/csrf-token', (req, res) => {
+  res.json({ csrfToken: req.csrfToken() });
+});
+
+app.post('/secure-route', (req, res) => {
+  res.send('Ruta protegida contra CSRF');
+});
+
+
+app.listen(8080, () => console.log('Servidor ejecutandose en http://localhost:8080'));
