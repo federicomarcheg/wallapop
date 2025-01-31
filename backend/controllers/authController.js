@@ -5,6 +5,8 @@ const asyncHandler = require('../utils/asyncHandler');
 const CustomError = require('../utils/CustomError');
 const crypto = require('crypto');
 const transporter = require('../config/nodemailerConfig');
+const { revokeTokens } = require('../middleware/authMiddleware');
+
 
 
 
@@ -253,5 +255,12 @@ exports.verifyEmail = async (req, res) => {
 
   res.send('Email verificado exitosamente');
 }
+
+
+exports.logout = (req, res) => {
+  const token = req.headers['authorization']?.split(' ')[1];
+  if (token) revokeToken(token);
+  res.status(200).json({ message: 'Sesion cerrada y token revocado' });
+};
 
 
