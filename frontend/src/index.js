@@ -80,3 +80,18 @@ const handleFavorite = async () => {
 <button onClick={handleFavorite}>Añadir a Favoritos</button>;
 
 
+const submitForm = async () => {
+  const response = await fetch('/csrf-token');
+  const { csrfToken } = await response.json();
+
+  await fetch('/secure-route', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrfToken,
+    },
+    body: JSON.stringify({ data: 'test' }),
+  });
+};
+
+
