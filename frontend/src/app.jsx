@@ -9,7 +9,8 @@ import FavoritesPage  from './pages/FavoritesPage';
 import Header from "./components/Header/Header";
 import AdsPage from "./pages/AdsPage";
 import ProfilePage from "./pages/ProfilePage";
-
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
 function app() {
@@ -90,4 +91,28 @@ const App = () => {
 import ProfilePage from "./pages/ProfilePage";
 
 <Route path="/profile" element={<ProfilePage />} />
+
+const optimizedImageUrl = (url, width, height) => `${url}?w=${width}&h=${height}&q=auto`;
+
+<img src={optimizedImageUrl(Imagebuilder, 300, 300)} alt="Producto" />;
+
+
+const Home = React.lazy(() => import('./pages/Home'));
+const ProductDetails = React.lazy(() => import('./pages/ProductsDatails'));
+const Cart = React.lazy(() => import('./pages/Cart'));
+
+function app() {
+  return (
+    <Router>
+      <Suspense fallback={<div>Cargando...</div>}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+      </Suspense>
+    </Router>
+  );
+}
+
 
