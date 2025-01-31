@@ -3,6 +3,7 @@ const express = require('express');
 const { createProduct } = require('../controllers/productController');
 const { getProduct } = require('../controllers/productController');
 const { getProductsByCategory } = require('../controllers/productController');
+const { cache } = require('../middleware/cacheMiddleware');
 
 
 
@@ -26,6 +27,9 @@ router.get('/category/:category', getProductCategory);
 router.get('/location', getProductLocation);
 router.post('/offer', makeOffer);
 module.exports = router;
+
+
+
 
 
 router.get('/search', async (req, res) => {
@@ -57,6 +61,14 @@ router.delete('/:id', deleteProduct);
 router.get('/:id', getAllProduct);
 
 module.exports = router;
+
+router.get('/products', cache, async (req, res) => {
+  const products = await fetchProductsFromDatabase();
+  res.status(200).json(products);
+});
+
+
+
 
 
 import express from 'express';
