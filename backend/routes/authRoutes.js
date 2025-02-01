@@ -27,4 +27,41 @@ router.get(
     }
 );
 
+/**
+ * @swagger
+ * /login:
+ *   post:
+ *     summary: Inicia sesión con credenciales
+ *     description: Endpoint para autenticación de usuarios.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Inicio de sesión exitoso
+ *       401:
+ *         description: Credenciales incorrectas
+ */
+router.post("/login", (req, res) => {
+    // Lógica de autenticación
+  });
+  
+
+
+
 module.exports = router;
+
+
+
+
+
+
+
