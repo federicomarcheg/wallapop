@@ -11,6 +11,8 @@ import AdsPage from "./pages/AdsPage";
 import ProfilePage from "./pages/ProfilePage";
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { requestNotificationPermission } from './firebase';
+
 
 
 function app() {
@@ -114,5 +116,13 @@ function app() {
     </Router>
   );
 }
+
+
+
+useEffect(() => {
+  requestNotificationPermission();
+}, []);
+
+return <div>Bienvenido a la app</div>;
 
 
