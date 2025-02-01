@@ -7,7 +7,7 @@ const passport = require('passport');
 require('.config/passport.js');
 const cookieParser = require('cookie-parser');
 const csrfProtection = require('./middleware/csrfMiddleware');
-
+const setupSwagger = require("./swagger");
 
 
 const authRoutes = require('./routes/auth');
@@ -267,3 +267,17 @@ app.post('/secure-route', (req, res) => {
 
 
 app.listen(8080, () => console.log('Servidor ejecutandose en http://localhost:8080'));
+
+
+setupSwagger(app);
+
+app.listen(8080, () => console.log("Servidor corriendo en http://localhost:8080"));
+
+require("dotenv").config();
+const express = require("express");
+const connectDB = require("./db");
+
+
+connectDB();
+
+app.listen(5000, () => console.log("Servidor en http://localhost:8080"));
